@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "normal_users",
+  "info": {
+    "singularName": "normal-user",
+    "pluralName": "normal-users",
+    "displayName": "Normal User",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "username": {
+      "type": "email"
+    },
+    "countries": {
+      "type": "enumeration",
+      "enum": [
+        "Malaysia",
+        "Singapore"
+      ]
+    },
+    "name": {
+      "type": "string"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "ACTIVE",
+        "INACTIVE",
+        "DELETED"
+      ]
+    },
+    "role": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::user-role.user-role",
+      "inversedBy": "normal_users"
+    }
+  }
+}

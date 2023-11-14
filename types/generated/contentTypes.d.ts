@@ -526,171 +526,16 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
-export interface PluginUsersPermissionsPermission
-  extends Schema.CollectionType {
-  collectionName: 'up_permissions';
-  info: {
-    name: 'permission';
-    description: '';
-    singularName: 'permission';
-    pluralName: 'permissions';
-    displayName: 'Permission';
-  };
-  pluginOptions: {
-    'content-manager': {
-      visible: false;
-    };
-    'content-type-builder': {
-      visible: false;
-    };
-  };
-  attributes: {
-    action: Attribute.String & Attribute.Required;
-    role: Attribute.Relation<
-      'plugin::users-permissions.permission',
-      'manyToOne',
-      'plugin::users-permissions.role'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::users-permissions.permission',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'plugin::users-permissions.permission',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface PluginUsersPermissionsRole extends Schema.CollectionType {
-  collectionName: 'up_roles';
-  info: {
-    name: 'role';
-    description: '';
-    singularName: 'role';
-    pluralName: 'roles';
-    displayName: 'Role';
-  };
-  pluginOptions: {
-    'content-manager': {
-      visible: false;
-    };
-    'content-type-builder': {
-      visible: false;
-    };
-  };
-  attributes: {
-    name: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        minLength: 3;
-      }>;
-    description: Attribute.String;
-    type: Attribute.String & Attribute.Unique;
-    permissions: Attribute.Relation<
-      'plugin::users-permissions.role',
-      'oneToMany',
-      'plugin::users-permissions.permission'
-    >;
-    users: Attribute.Relation<
-      'plugin::users-permissions.role',
-      'oneToMany',
-      'plugin::users-permissions.user'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::users-permissions.role',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'plugin::users-permissions.role',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface PluginUsersPermissionsUser extends Schema.CollectionType {
-  collectionName: 'up_users';
-  info: {
-    name: 'user';
-    description: '';
-    singularName: 'user';
-    pluralName: 'users';
-    displayName: 'User';
-  };
-  options: {
-    draftAndPublish: false;
-    timestamps: true;
-  };
-  attributes: {
-    username: Attribute.String &
-      Attribute.Required &
-      Attribute.Unique &
-      Attribute.SetMinMaxLength<{
-        minLength: 3;
-      }>;
-    email: Attribute.Email &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        minLength: 6;
-      }>;
-    provider: Attribute.String;
-    password: Attribute.Password &
-      Attribute.Private &
-      Attribute.SetMinMaxLength<{
-        minLength: 6;
-      }>;
-    resetPasswordToken: Attribute.String & Attribute.Private;
-    confirmationToken: Attribute.String & Attribute.Private;
-    confirmed: Attribute.Boolean & Attribute.DefaultTo<false>;
-    blocked: Attribute.Boolean & Attribute.DefaultTo<false>;
-    role: Attribute.Relation<
-      'plugin::users-permissions.user',
-      'manyToOne',
-      'plugin::users-permissions.role'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::users-permissions.user',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'plugin::users-permissions.user',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface ApiBookBook extends Schema.CollectionType {
   collectionName: 'books';
   info: {
     singularName: 'book';
     pluralName: 'books';
     displayName: 'Book';
+    description: '';
   };
   options: {
     draftAndPublish: true;
-  };
-  pluginOptions: {
-    'import-export-entries': {
-      idField: 'id';
-    };
   };
   attributes: {
     name: Attribute.String;
@@ -745,36 +590,38 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
   };
 }
 
-export interface ApiOrderOrder extends Schema.CollectionType {
-  collectionName: 'orders';
+export interface ApiNormalUserNormalUser extends Schema.CollectionType {
+  collectionName: 'normal_users';
   info: {
-    singularName: 'order';
-    pluralName: 'orders';
-    displayName: 'Order';
+    singularName: 'normal-user';
+    pluralName: 'normal-users';
+    displayName: 'Normal User';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    email: Attribute.Email;
-    notes: Attribute.String;
-    paymentMethod: Attribute.Enumeration<['OCD', 'VISA']>;
-    order_items: Attribute.Relation<
-      'api::order.order',
-      'oneToMany',
-      'api::order-item.order-item'
+    username: Attribute.Email;
+    countries: Attribute.Enumeration<['Malaysia', 'Singapore']>;
+    name: Attribute.String;
+    status: Attribute.Enumeration<['ACTIVE', 'INACTIVE', 'DELETED']>;
+    role: Attribute.Relation<
+      'api::normal-user.normal-user',
+      'manyToOne',
+      'api::user-role.user-role'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::order.order',
+      'api::normal-user.normal-user',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::order.order',
+      'api::normal-user.normal-user',
       'oneToOne',
       'admin::user'
     > &
@@ -782,38 +629,80 @@ export interface ApiOrderOrder extends Schema.CollectionType {
   };
 }
 
-export interface ApiOrderItemOrderItem extends Schema.CollectionType {
-  collectionName: 'order_items';
+export interface ApiRolePermissionRolePermission extends Schema.CollectionType {
+  collectionName: 'role_permissions';
   info: {
-    singularName: 'order-item';
-    pluralName: 'order-items';
-    displayName: 'Order Item';
+    singularName: 'role-permission';
+    pluralName: 'role-permissions';
+    displayName: 'Permission';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    order: Attribute.Relation<
-      'api::order-item.order-item',
-      'manyToOne',
-      'api::order.order'
+    name: Attribute.String & Attribute.Required;
+    action: Attribute.String;
+    method: Attribute.String & Attribute.Required;
+    url: Attribute.String & Attribute.Required;
+    roles: Attribute.Relation<
+      'api::role-permission.role-permission',
+      'manyToMany',
+      'api::user-role.user-role'
     >;
-    quantity: Attribute.Integer &
-      Attribute.Required &
-      Attribute.SetMinMax<{
-        min: 1;
-      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::order-item.order-item',
+      'api::role-permission.role-permission',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::order-item.order-item',
+      'api::role-permission.role-permission',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiUserRoleUserRole extends Schema.CollectionType {
+  collectionName: 'user_roles';
+  info: {
+    singularName: 'user-role';
+    pluralName: 'user-roles';
+    displayName: 'Role';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    status: Attribute.Enumeration<['ACTIVE', 'INACTIVE', 'DELETED']>;
+    permissions: Attribute.Relation<
+      'api::user-role.user-role',
+      'manyToMany',
+      'api::role-permission.role-permission'
+    >;
+    normal_users: Attribute.Relation<
+      'api::user-role.user-role',
+      'oneToMany',
+      'api::normal-user.normal-user'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::user-role.user-role',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::user-role.user-role',
       'oneToOne',
       'admin::user'
     > &
@@ -834,13 +723,11 @@ declare module '@strapi/types' {
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::i18n.locale': PluginI18NLocale;
-      'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
-      'plugin::users-permissions.role': PluginUsersPermissionsRole;
-      'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::book.book': ApiBookBook;
       'api::category.category': ApiCategoryCategory;
-      'api::order.order': ApiOrderOrder;
-      'api::order-item.order-item': ApiOrderItemOrderItem;
+      'api::normal-user.normal-user': ApiNormalUserNormalUser;
+      'api::role-permission.role-permission': ApiRolePermissionRolePermission;
+      'api::user-role.user-role': ApiUserRoleUserRole;
     }
   }
 }

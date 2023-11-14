@@ -4,16 +4,13 @@
   "info": {
     "singularName": "book",
     "pluralName": "books",
-    "displayName": "Book"
+    "displayName": "Book",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
-  "pluginOptions": {
-    "import-export-entries": {
-      "idField": "id"
-    }
-  },
+  "pluginOptions": {},
   "attributes": {
     "name": {
       "type": "string"

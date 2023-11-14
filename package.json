@@ -10,11 +10,14 @@
     "strapi": "strapi"
   },
   "dependencies": {
+    "@azure/msal-node": "^2.4.0",
     "@strapi/plugin-i18n": "4.14.5",
     "@strapi/plugin-users-permissions": "4.14.5",
     "@strapi/strapi": "4.14.5",
     "@types/koa": "^2.13.10",
     "csv-stringify": "^6.4.4",
+    "jsonwebtoken": "^9.0.2",
+    "passport-azure-ad-oauth2": "^0.0.4",
     "pg": "8.8.0",
     "strapi-plugin-import-export-entries": "^1.21.1",
     "stream": "^0.0.2"
@@ -29,5 +32,8 @@
     "node": ">=16.0.0 <=20.x.x",
     "npm": ">=6.0.0"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@types/koa-bodyparser": "^4.3.12"
+  }
 }

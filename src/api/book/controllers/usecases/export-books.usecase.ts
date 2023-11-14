@@ -4,7 +4,7 @@ import { Context } from 'koa';
 export class ExportBooksUsecase {
     static readonly strapi: Strapi = strapi;
 
-    static async handle(ctx: Context) {
+    static async execute(ctx: Context) {
         const { results } = await this.strapi.service('api::book.book').find(ctx);
         const stream = await this.strapi.service('api::book.book').export(results);
         ctx.response.attachment(`report.csv`)

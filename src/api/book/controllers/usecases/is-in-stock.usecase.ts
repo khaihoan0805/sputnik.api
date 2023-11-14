@@ -4,7 +4,7 @@ import { Context } from 'koa'
 export class IsInStockBookUsecase {
     static strapi: Strapi = strapi;
 
-    static async handle(ctx: Context): Promise<{ data: boolean }> {
+    static async execute(ctx: Context): Promise<{ data: boolean }> {
         const test = await strapi.entityService.findMany('api::book.book', {
             filters: {
                 id: { $eq: ctx.params.id }

@@ -7,10 +7,10 @@ import { CountTotalBooksUsecase, ExportBooksUsecase, IsInStockBookUsecase } from
 
 export default factories.createCoreController('api::book.book', ({ strapi }) => ({
 
-    countTotalBooks: async (ctx) => { return await CountTotalBooksUsecase.handle(ctx) },
+    countTotalBooks: async (ctx) => { return await CountTotalBooksUsecase.execute(ctx) },
 
-    isInStockById: async (ctx) => { return await IsInStockBookUsecase.handle(ctx) },
+    isInStockById: async (ctx) => { return await IsInStockBookUsecase.execute(ctx) },
 
-    exportBooks: async (ctx) => { return await ExportBooksUsecase.handle(ctx) }
+    exportBooks: async (ctx) => { return await ExportBooksUsecase.execute(ctx) }
 }));
 

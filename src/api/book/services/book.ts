@@ -4,7 +4,7 @@
 
 import { factories } from '@strapi/strapi';
 import { CSVExporter } from '../../../services';
-import { Book } from '../../../../types/entites/books';
+import { Book } from '../../../../types/entities/book';
 
 class BooksCSVExporter extends CSVExporter<Book> {
     public readonly defaults = {

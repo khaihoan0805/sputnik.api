@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "role_permissions",
+  "info": {
+    "singularName": "role-permission",
+    "pluralName": "role-permissions",
+    "displayName": "Permission",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "action": {
+      "type": "string"
+    },
+    "method": {
+      "type": "string",
+      "required": true
+    },
+    "url": {
+      "type": "string",
+      "required": true
+    },
+    "roles": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::user-role.user-role",
+      "inversedBy": "permissions"
+    }
+  }
+}
