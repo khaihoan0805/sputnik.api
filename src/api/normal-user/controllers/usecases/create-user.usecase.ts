@@ -1,20 +1,19 @@
 import { Strapi } from '@strapi/strapi';
-import { ApiNormalUserNormalUser } from '../../../../../types/generated/contentTypes';
 
 export class CreateUserUsecase {
     static readonly strapi: Strapi = strapi;
 
-    static async execute(account: any): Promise<ApiNormalUserNormalUser> {
+    static async execute(account: any): Promise<any> {
         const { results } = await this.strapi.service('api::normal-user.normal-user').find({
             filters: {
                 username: { $eq: account.username }
             },
         })
-        if (results.length > 0) { console.log(`user is existed`); return }
+        if (results.length > 0) { return }
 
         const roles = await this.strapi.entityService.findMany('api::user-role.user-role', {
             filters: {
-                name: 'Country Admin'
+                name: 'Region Admin'
             }
         })
         if (!roles) { throw this.strapi.requestContext.get().notFound(`default Role is not existed when add role for user`) }

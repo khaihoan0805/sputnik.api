@@ -1,0 +1,20 @@
+{
+  "kind": "collectionType",
+  "collectionName": "registration_statuses",
+  "info": {
+    "singularName": "registration-status",
+    "pluralName": "registration-statuses",
+    "displayName": "Registration Status"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    }
+  }
+}

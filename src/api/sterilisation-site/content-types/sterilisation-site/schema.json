@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sterilisation_sites",
+  "info": {
+    "singularName": "sterilisation-site",
+    "pluralName": "sterilisation-sites",
+    "displayName": "Sterilisation Site"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "upns": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::upn.upn",
+      "mappedBy": "sterilisation_sites"
+    }
+  }
+}

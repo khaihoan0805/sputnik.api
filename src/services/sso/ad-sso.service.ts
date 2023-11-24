@@ -121,6 +121,8 @@ export class AzureADSSOService {
             codeVerifier: ctx.session.pkceCodes.verifier,
         };
 
+        console.log(ctx.session)
+
         if (ctx.session.tokenCache) {
             console.log(`this.singleton.getTokenCache(): `, this.singleton.getTokenCache())
         }

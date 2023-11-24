@@ -1,15 +1,48 @@
 import { Strapi } from '@strapi/strapi';
 import { Context } from 'koa';
 
-const isHavingSession: (policyContext: any, config: any, { strapi }: { strapi: Strapi }) => void = (policyContext, config, { strapi }) => {
+async function isHavingSession(policyContext: any, config: any, { strapi }: { strapi: Strapi }): Promise<boolean> {
     const ctx: Context = strapi.requestContext.get();
-    console.log(`ctx.session: `, ctx.session)
-    if (ctx.session.user) {
-        return true;
+    if (!ctx.session.isAuthenticated && !ctx.session.user) {
+        console.log(`have no session: `)
+        return false;
     }
 
-    console.log(`have no session: `)
-    return;
+    console.log(`session: `, ctx.session)
+
+    const user = await strapi.entityService.findOne('api::normal-user.normal-user', ctx.session.user.id, {
+        populate: { role: { populate: 'permissions' } }
+    })
+    if (!user) {
+        return false;
+    }
+
+    ctx.user = user;
+
+    console.log(`ctx.user: `, ctx.user)
+
+    return true;
 }
+
+// const isHavingSession: (policyContext: any, config: any, { strapi }: { strapi: Strapi }) => Promise<boolean>  = (policyContext, config, { strapi }) => {
+//     const ctx: Context = strapi.requestContext.get();
+//     if (!ctx.session.isAuthenticated) {
+//         console.log(`have no session: `)
+//         return false;
+//     }
+
+//     const user = await strapi.entityService.findMany('api::normal-user.normal-user', {
+//         filters: {
+//             username: ctx.session.oauth
+//         }
+//     })
+
+
+
+//     return true;
+
+
+
+// }
 
 export default isHavingSession;

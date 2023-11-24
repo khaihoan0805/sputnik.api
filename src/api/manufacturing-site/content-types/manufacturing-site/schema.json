@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "manufacturing_sites",
+  "info": {
+    "singularName": "manufacturing-site",
+    "pluralName": "manufacturing-sites",
+    "displayName": "Manufacturing Site"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "upns": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::upn.upn",
+      "mappedBy": "manufacturing_sites"
+    }
+  }
+}

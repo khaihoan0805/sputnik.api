@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sa_types",
+  "info": {
+    "singularName": "sa-type",
+    "pluralName": "sa-types",
+    "displayName": "SA Type"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "registrations": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::registration.registration",
+      "mappedBy": "sa_type"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "groupings",
+  "info": {
+    "singularName": "grouping",
+    "pluralName": "groupings",
+    "displayName": "Grouping"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "registrations": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::registration.registration",
+      "mappedBy": "grouping"
+    }
+  }
+}

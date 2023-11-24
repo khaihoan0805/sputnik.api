@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "legal_manufacturers",
+  "info": {
+    "singularName": "legal-manufacturer",
+    "pluralName": "legal-manufacturers",
+    "displayName": "Legal Manufacturer"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "upns": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::upn.upn",
+      "mappedBy": "legal_manufacturers"
+    }
+  }
+}

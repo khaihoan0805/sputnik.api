@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "global_ifu_windchills",
+  "info": {
+    "singularName": "global-ifu-windchill",
+    "pluralName": "global-ifu-windchills",
+    "displayName": "Global IFU Windchill"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "upns": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::upn.upn",
+      "mappedBy": "global_ifu_windchills"
+    }
+  }
+}

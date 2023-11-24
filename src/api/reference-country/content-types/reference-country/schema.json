@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "reference_countries",
+  "info": {
+    "singularName": "reference-country",
+    "pluralName": "reference-countries",
+    "displayName": "Reference Country",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "abbreviation": {
+      "type": "string"
+    }
+  }
+}

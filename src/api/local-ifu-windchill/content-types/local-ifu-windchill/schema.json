@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "local_ifu_windchills",
+  "info": {
+    "singularName": "local-ifu-windchill",
+    "pluralName": "local-ifu-windchills",
+    "displayName": "Local IFU Windchill"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "upns": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::upn.upn",
+      "mappedBy": "local_ifu_windchills"
+    }
+  }
+}

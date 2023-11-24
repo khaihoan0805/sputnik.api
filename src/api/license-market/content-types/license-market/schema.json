@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "license_markets",
+  "info": {
+    "singularName": "license-market",
+    "pluralName": "license-markets",
+    "displayName": "License Market"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "registrations": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::registration.registration",
+      "mappedBy": "license_market"
+    }
+  }
+}

@@ -38,6 +38,18 @@
       "relation": "manyToOne",
       "target": "api::user-role.user-role",
       "inversedBy": "normal_users"
+    },
+    "ra_reresentative_registrations": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::registration.registration",
+      "mappedBy": "ra_reresentative"
+    },
+    "registrations": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::registration.registration",
+      "mappedBy": "ra_representative"
     }
   }
 }

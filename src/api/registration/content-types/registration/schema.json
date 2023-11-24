@@ -1,0 +1,198 @@
+{
+  "kind": "collectionType",
+  "collectionName": "registrations",
+  "info": {
+    "singularName": "registration",
+    "pluralName": "registrations",
+    "displayName": "Registration",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "registration_no": {
+      "type": "string",
+      "required": false,
+      "unique": true
+    },
+    "registration_expiry_date": {
+      "type": "date",
+      "required": false
+    },
+    "registration_submission_id": {
+      "type": "string",
+      "required": false
+    },
+    "online_single_submission_id": {
+      "type": "string",
+      "required": false
+    },
+    "registration_status": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::registration-status.registration-status"
+    },
+    "application": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::application.application",
+      "inversedBy": "registrations"
+    },
+    "division": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::division.division",
+      "inversedBy": "registrations"
+    },
+    "registered_product_set": {
+      "type": "string",
+      "required": false
+    },
+    "approved_indication": {
+      "type": "text",
+      "required": false
+    },
+    "classification": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::classification.classification",
+      "inversedBy": "registrations"
+    },
+    "grouping": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::grouping.grouping",
+      "inversedBy": "registrations"
+    },
+    "device_category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::device-category.device-category",
+      "inversedBy": "registrations"
+    },
+    "rule": {
+      "type": "integer",
+      "required": false,
+      "max": 16,
+      "min": 1
+    },
+    "gmdn": {
+      "type": "biginteger",
+      "required": false
+    },
+    "halal_registration": {
+      "type": "string"
+    },
+    "queries_from_authority_info": {
+      "type": "string"
+    },
+    "total_fee": {
+      "type": "string"
+    },
+    "ra_reresentative": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::normal-user.normal-user",
+      "inversedBy": "ra_reresentative_registrations"
+    },
+    "registration_est_submission_date": {
+      "type": "date"
+    },
+    "registration_authority_submitted_date": {
+      "type": "date"
+    },
+    "registration_queries_from_authority_receive_date": {
+      "type": "date"
+    },
+    "registration_queries_from_authority_response_date": {
+      "type": "date"
+    },
+    "registration_remark": {
+      "type": "text"
+    },
+    "par_request_date": {
+      "type": "date"
+    },
+    "reference_country": {
+      "type": "integer",
+      "required": false
+    },
+    "country_of_origin": {
+      "type": "integer"
+    },
+    "potential_sales": {
+      "type": "json"
+    },
+    "registration_total_fee": {
+      "type": "biginteger"
+    },
+    "non_md_letter_submission_date": {
+      "type": "date"
+    },
+    "non_md_letter_approval_date": {
+      "type": "date"
+    },
+    "non_md_letter_expiry_date": {
+      "type": "date"
+    },
+    "non_md_letter_approval_no": {
+      "type": "biginteger"
+    },
+    "non_md_access_fee": {
+      "type": "json"
+    },
+    "sa_type": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::sa-type.sa-type",
+      "inversedBy": "registrations"
+    },
+    "sa_submission_date": {
+      "type": "date"
+    },
+    "sa_approval_date": {
+      "type": "date"
+    },
+    "sa_expiry_date": {
+      "type": "date"
+    },
+    "sa_fee": {
+      "type": "json"
+    },
+    "registration_approval_date": {
+      "required": false,
+      "type": "date"
+    },
+    "registration_cab_submission_date": {
+      "type": "date",
+      "required": false
+    },
+    "registration_cab_approval_date": {
+      "type": "date"
+    },
+    "license_owner": {
+      "type": "string",
+      "required": false
+    },
+    "ra_representative": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::normal-user.normal-user",
+      "inversedBy": "registrations"
+    },
+    "license_market": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::license-market.license-market",
+      "inversedBy": "registrations"
+    },
+    "upns": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::upn.upn",
+      "mappedBy": "registration"
+    }
+  }
+}

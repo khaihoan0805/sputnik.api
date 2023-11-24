@@ -1,0 +1,94 @@
+{
+  "kind": "collectionType",
+  "collectionName": "upns",
+  "info": {
+    "singularName": "upn",
+    "pluralName": "upns",
+    "displayName": "UPN",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "upn_id": {
+      "type": "string",
+      "required": true
+    },
+    "agencies": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::agency.agency",
+      "mappedBy": "upns"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "ACTIVE",
+        "INACTIVE"
+      ]
+    },
+    "par_request_date": {
+      "type": "date"
+    },
+    "device_description": {
+      "type": "string",
+      "required": false
+    },
+    "legal_manufacturers": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::legal-manufacturer.legal-manufacturer",
+      "inversedBy": "upns"
+    },
+    "manufacturing_sites": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::manufacturing-site.manufacturing-site",
+      "inversedBy": "upns"
+    },
+    "sterilisation_sites": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::sterilisation-site.sterilisation-site",
+      "inversedBy": "upns"
+    },
+    "name_as_per_label": {
+      "type": "string"
+    },
+    "udi": {
+      "type": "string"
+    },
+    "shelf_life": {
+      "type": "string"
+    },
+    "local_ifu_windchills": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::local-ifu-windchill.local-ifu-windchill",
+      "inversedBy": "upns"
+    },
+    "global_ifu_windchills": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::global-ifu-windchill.global-ifu-windchill",
+      "inversedBy": "upns"
+    },
+    "cfs_cfg_no": {
+      "type": "string"
+    },
+    "cfs_cfg_expriry_date": {
+      "type": "string"
+    },
+    "potential_sales": {
+      "type": "json"
+    },
+    "registration": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::registration.registration",
+      "inversedBy": "upns"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "device_categories",
+  "info": {
+    "singularName": "device-category",
+    "pluralName": "device-categories",
+    "displayName": "Device Category"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "registrations": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::registration.registration",
+      "mappedBy": "device_category"
+    }
+  }
+}
