@@ -3,10 +3,16 @@
  */
 
 import { factories } from '@strapi/strapi'
-import { SaveRegistrationAsDraftUsecase } from './usecases';
+import { SaveRegistrationUsecase, UpdateRegistrationUsecase } from './usecases';
 
 export default factories.createCoreController('api::registration.registration', {
 
-    saveAsDraft: async (ctx) => { return await SaveRegistrationAsDraftUsecase.execute(ctx) },
+    saveDraftRegistration: async (ctx) => { return await SaveRegistrationUsecase.execute(ctx, true) },
+
+    updateDraftRegistration: async (ctx) => { return await UpdateRegistrationUsecase.execute(ctx, true) },
+
+    submitNewRegistration: async (ctx) => { return await SaveRegistrationUsecase.execute(ctx, false) },
+
+    submitRegistrationFromDraft: async (ctx) => { return await UpdateRegistrationUsecase.execute(ctx, false) },
 
 });

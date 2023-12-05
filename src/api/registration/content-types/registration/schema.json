@@ -15,7 +15,7 @@
     "registration_no": {
       "type": "string",
       "required": false,
-      "unique": true
+      "unique": false
     },
     "registration_expiry_date": {
       "type": "date",
@@ -115,10 +115,6 @@
     "par_request_date": {
       "type": "date"
     },
-    "reference_country": {
-      "type": "integer",
-      "required": false
-    },
     "country_of_origin": {
       "type": "integer"
     },
@@ -180,7 +176,7 @@
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::normal-user.normal-user",
-      "inversedBy": "registrations"
+      "inversedBy": "ra_representative_registrations"
     },
     "license_market": {
       "type": "relation",
@@ -193,6 +189,20 @@
       "relation": "oneToMany",
       "target": "api::upn.upn",
       "mappedBy": "registration"
+    },
+    "created_by_user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::normal-user.normal-user",
+      "inversedBy": "registrations"
+    },
+    "is_draft": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "reference_country": {
+      "type": "string"
     }
   }
 }

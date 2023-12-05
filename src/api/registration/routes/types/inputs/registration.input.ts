@@ -1,5 +1,7 @@
 
-export type SaveRegistrationAsDraftUPNAgencyPayload = {
+export type SetRelationsPayload<P> = { [K in keyof P]?: { set: { id: number }[] } };
+
+export type RegistrationUPNAgencyPayload = {
     id?: number;
     agency_application_status: { id: number };
     agency_license_details: { id: number };
@@ -11,18 +13,20 @@ export type SaveRegistrationAsDraftUPNAgencyPayload = {
     frequency: string;
 }
 
-export type SaveRegistrationAsDraftUPNAgencyRelationPayload = Pick<SaveRegistrationAsDraftUPNAgencyPayload,
+export type RegistrationUPNAgencyRelationPayload = Pick<RegistrationUPNAgencyPayload,
     'agency_application_status' | 'agency_license_details'
->
+>;
+
+export type AgencyRelationPayload = SetRelationsPayload<RegistrationUPNAgencyRelationPayload>;
 
 
-export type SaveRegistrationAsDraftUPNPayload = {
+export type RegistrationUPNPayload = {
     id?: number;
 
     //main information
 
     par_request_date: Date;
-    upn_id: string;
+    code: string;
     status: string;
 
     device_description: string;
@@ -48,23 +52,25 @@ export type SaveRegistrationAsDraftUPNPayload = {
 
     //agencies
 
-    agencies: SaveRegistrationAsDraftUPNAgencyPayload[];
+    agencies: RegistrationUPNAgencyPayload[];
 }
 
-export type SaveRegistrationAsDraftUPNRelationPayload = Pick<SaveRegistrationAsDraftUPNPayload,
+export type RegistrationUPNRelationPayload = Pick<RegistrationUPNPayload,
     'legal_manufacturers'
     | 'manufacturer_sites'
     | 'sterilisation_sites'
     | 'local_ifu_windchills'
     | 'global_ifu_windchills'
->
+>;
 
-export type SaveRegistrationAsDraftayload = {
+export type UPNRelationPayload = SetRelationsPayload<RegistrationUPNRelationPayload & { agencies?: RegistrationUPNAgencyPayload[] }>
+
+export type RegistrationPayload = {
     id?: number;
 
     // UPNs
 
-    upns: SaveRegistrationAsDraftUPNPayload[]
+    upns: RegistrationUPNPayload[]
 
     // License information fields
     registration_status: { id: number };
@@ -134,8 +140,8 @@ export type SaveRegistrationAsDraftayload = {
     };
 }
 
-export type SaveRegistrationAsDraftRelationsPayload = Pick<
-    SaveRegistrationAsDraftayload,
+export type RegistrationRelationsPayload = Pick<
+    RegistrationPayload,
     'application'
     | 'division'
     | 'classification'
@@ -145,3 +151,5 @@ export type SaveRegistrationAsDraftRelationsPayload = Pick<
     | 'license_market'
     | 'sa_type'
 >
+
+export type RegistrationRelationPayload = SetRelationsPayload<RegistrationRelationsPayload & { upns?: RegistrationUPNPayload }>

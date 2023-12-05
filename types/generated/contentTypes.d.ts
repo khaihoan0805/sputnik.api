@@ -1030,6 +1030,11 @@ export interface ApiNormalUserNormalUser extends Schema.CollectionType {
       'oneToMany',
       'api::registration.registration'
     >;
+    ra_representative_registrations: Attribute.Relation<
+      'api::normal-user.normal-user',
+      'oneToMany',
+      'api::registration.registration'
+    >;
     registrations: Attribute.Relation<
       'api::normal-user.normal-user',
       'oneToMany',
@@ -1098,7 +1103,7 @@ export interface ApiRegistrationRegistration extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    registration_no: Attribute.String & Attribute.Unique;
+    registration_no: Attribute.String;
     registration_expiry_date: Attribute.Date;
     registration_submission_id: Attribute.String;
     online_single_submission_id: Attribute.String;
@@ -1154,7 +1159,6 @@ export interface ApiRegistrationRegistration extends Schema.CollectionType {
     registration_queries_from_authority_response_date: Attribute.Date;
     registration_remark: Attribute.Text;
     par_request_date: Attribute.Date;
-    reference_country: Attribute.Integer;
     country_of_origin: Attribute.Integer;
     potential_sales: Attribute.JSON;
     registration_total_fee: Attribute.BigInteger;
@@ -1191,6 +1195,15 @@ export interface ApiRegistrationRegistration extends Schema.CollectionType {
       'oneToMany',
       'api::upn.upn'
     >;
+    created_by_user: Attribute.Relation<
+      'api::registration.registration',
+      'manyToOne',
+      'api::normal-user.normal-user'
+    >;
+    is_draft: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<false>;
+    reference_country: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1362,7 +1375,7 @@ export interface ApiUpnUpn extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    upn_id: Attribute.String & Attribute.Required;
+    code: Attribute.String & Attribute.Required;
     agencies: Attribute.Relation<
       'api::upn.upn',
       'manyToMany',

@@ -10,7 +10,7 @@ const registrationStatuses = [
   'Registration Fee',
   'Approved',
   'Draft',
-  'Exempted',
+  'Exempted'
 ]
 
 export {

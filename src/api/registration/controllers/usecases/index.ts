@@ -1,1 +1,2 @@
-export * from './save-registration-as-draft.usecase';
+export * from './save-registration.usecase';
+export * from './update-registration.usecase'

@@ -8,6 +8,7 @@ import { applications } from '../data/applications';
 import { globalIfuWindchills } from '../data/global-ifu-windchills';
 import { saTypes } from '../data/sa-types';
 import { localIfuWindchills } from '../data/local-ifu-windchills'
+import { legalManufacturers } from '../data/legal_manufacturers';
 
 export default {
   /**
@@ -165,5 +166,51 @@ export default {
         })
       }
     }
+
+    console.log('Seeding data: Legal Manufacturers')
+    for (const title of legalManufacturers) {
+      const entity = await strapi.db.query('api::legal-manufacturer.legal-manufacturer').findOne({ where: { title } })
+      if (!entity) {
+        await strapi.db.query('api::legal-manufacturer.legal-manufacturer').create({
+          data: {
+            title,
+            publishedAt: new Date(),
+            createdBy: admin.id,
+            updatedBy: admin.id,
+          }
+        })
+      }
+    }
+
+    console.log('Seeding data: Manufacturer Sites')
+    for (const title of saTypes) {
+      const entity = await strapi.db.query('api::manufacturing-site.manufacturing-site').findOne({ where: { title } })
+      if (!entity) {
+        await strapi.db.query('api::manufacturing-site.manufacturing-site').create({
+          data: {
+            title,
+            publishedAt: new Date(),
+            createdBy: admin.id,
+            updatedBy: admin.id,
+          }
+        })
+      }
+    }
+
+    console.log('Seeding data: Sterilization Sites')
+    for (const title of saTypes) {
+      const entity = await strapi.db.query('api::sterilisation-site.sterilisation-site').findOne({ where: { title } })
+      if (!entity) {
+        await strapi.db.query('api::sterilisation-site.sterilisation-site').create({
+          data: {
+            title,
+            publishedAt: new Date(),
+            createdBy: admin.id,
+            updatedBy: admin.id,
+          }
+        })
+      }
+    }
+
   },
 };

@@ -45,11 +45,17 @@
       "target": "api::registration.registration",
       "mappedBy": "ra_reresentative"
     },
-    "registrations": {
+    "ra_representative_registrations": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::registration.registration",
       "mappedBy": "ra_representative"
+    },
+    "registrations": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::registration.registration",
+      "mappedBy": "created_by_user"
     }
   }
 }

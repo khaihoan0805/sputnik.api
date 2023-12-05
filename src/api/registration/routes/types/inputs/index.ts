@@ -1,1 +1,1 @@
-export * from './save-registration-as-draft.input';
+export * from './registration.input';
