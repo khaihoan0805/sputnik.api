@@ -13,4 +13,13 @@ export default ({ env }) => ({
     // },
     // //...
     'users-permissions': false,
+    // upload: {
+    //     config: {
+    //         providerOptions: {
+    //             localServer: {
+    //                 maxage: 300000
+    //             },
+    //         },
+    //     },
+    // },
 });

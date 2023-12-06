@@ -26,7 +26,6 @@ import { errors } from '@strapi/utils'
 
 export default async (policyContext, config, { strapi }) => {
     const ctx: Context = strapi.requestContext.get();
-    console.log(`ctx.session: `, ctx.session)
     if (!ctx.session) {
         console.log(`pass here missing session: `)
         throw new errors.UnauthorizedError(`Missing session`);

@@ -1,6 +1,6 @@
 import { Strapi } from '@strapi/strapi';
 import { Context } from 'koa';
-import { RegistrationPayload } from '../routes/types/inputs';
+import { RegistrationPayload, RequiredRegistrationFields, RequiredUPNFields } from '../routes/types';
 
 import { errors } from '@strapi/utils';
 const { PolicyError } = errors;
@@ -54,36 +54,13 @@ async function validateSubmitRegistration(policyContext: any, config: any, { str
     const body: RegistrationPayload = ctx.request.body as any;
 
     try {
-        const requiredRegistrationFields = [
-            'registration_status',
-            'application',
-            'division',
-            'registration_approval_date',
-            // 'registration_submission_id',
-            'registered_product_set',
-            'approved_indication',
-            'classification',
-            'grouping',
-            'device_category',
-            'license_market'
-        ]
-
-        requiredRegistrationFields.forEach(key => {
+        RequiredRegistrationFields.forEach(key => {
             if (!body[key]) { throw new PolicyError(`missing key: ${key} when submitting registrion`) }
         })
 
-        const requiredUPNFields = [
-            'par_request_date',
-            'code',
-            'device_description',
-            'legal_manufacturers',
-            'manufacturer_sites',
-            'sterilization_sites',
-        ]
-
         if (body.upns || body.upns.length > 0) {
             body.upns.forEach(upn => {
-                requiredUPNFields.forEach(key => {
+                RequiredUPNFields.forEach(key => {
                     if (!upn[key]) { throw new PolicyError(`missing key: ${key} in UPN ${upn.code} when submitting registrion`) }
                 })
             })

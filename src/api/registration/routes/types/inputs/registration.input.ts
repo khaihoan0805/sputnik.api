@@ -19,6 +19,14 @@ export type RegistrationUPNAgencyRelationPayload = Pick<RegistrationUPNAgencyPay
 
 export type AgencyRelationPayload = SetRelationsPayload<RegistrationUPNAgencyRelationPayload>;
 
+export const RequiredUPNFields = [
+    'par_request_date',
+    'code',
+    'device_description',
+    'legal_manufacturers',
+    'manufacturer_sites',
+    'sterilization_sites',
+]
 
 export type RegistrationUPNPayload = {
     id?: number;
@@ -64,6 +72,21 @@ export type RegistrationUPNRelationPayload = Pick<RegistrationUPNPayload,
 >;
 
 export type UPNRelationPayload = SetRelationsPayload<RegistrationUPNRelationPayload & { agencies?: RegistrationUPNAgencyPayload[] }>
+
+
+export const RequiredRegistrationFields = [
+    'registration_status',
+    'application',
+    'division',
+    'registration_approval_date',
+    // 'registration_submission_id',
+    'registered_product_set',
+    'approved_indication',
+    'classification',
+    'grouping',
+    'device_category',
+    'license_market'
+]
 
 export type RegistrationPayload = {
     id?: number;
@@ -153,3 +176,4 @@ export type RegistrationRelationsPayload = Pick<
 >
 
 export type RegistrationRelationPayload = SetRelationsPayload<RegistrationRelationsPayload & { upns?: RegistrationUPNPayload }>
+

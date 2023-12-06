@@ -35,6 +35,15 @@ export default {
                 auth: false,
                 policies: ['global::is-having-session', 'api::registration.validate-submit-registration-input']
             }
+        },
+        {
+            method: 'POST',
+            path: '/registrations/upns/csv',
+            handler: 'registration.parseUPNsWithCSV',
+            config: {
+                auth: false,
+                policies: ['global::is-having-session']
+            }
         }
     ]
 }

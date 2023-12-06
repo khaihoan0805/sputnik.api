@@ -3,7 +3,7 @@
  */
 
 import { factories } from '@strapi/strapi'
-import { SaveRegistrationUsecase, UpdateRegistrationUsecase } from './usecases';
+import { ParseUPNsWithCSVUsecase, SaveRegistrationUsecase, UpdateRegistrationUsecase } from './usecases';
 
 export default factories.createCoreController('api::registration.registration', {
 
@@ -14,5 +14,7 @@ export default factories.createCoreController('api::registration.registration', 
     submitNewRegistration: async (ctx) => { return await SaveRegistrationUsecase.execute(ctx, false) },
 
     submitRegistrationFromDraft: async (ctx) => { return await UpdateRegistrationUsecase.execute(ctx, false) },
+
+    parseUPNsWithCSV: async (ctx) => { return ParseUPNsWithCSVUsecase.execute(ctx) }
 
 });
